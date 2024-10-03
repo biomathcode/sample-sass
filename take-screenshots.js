@@ -1,4 +1,4 @@
-const puppeteer = require("puppeteer");
+import puppeteer from "puppeteer";
 
 (async () => {
   const url = process.env.URL || "https://sample-sass.vercel.app/"; // Default URL
