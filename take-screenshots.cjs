@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+const puppeteer = require("puppeteer");
 
 (async () => {
   const url = process.env.URL || "https://sample-sass.vercel.app/"; // Default URL
@@ -14,7 +14,12 @@ import puppeteer from "puppeteer";
   for (const { name, width, height } of dimensions) {
     await page.setViewport({ width, height });
     await page.goto(url, { waitUntil: "networkidle2" });
-    await page.screenshot({ path: `screenshot-${name}.png`, fullPage: true });
+    const ts = Date.now();
+
+    await page.screenshot({
+      path: `./screenshots/screenshot-${name + "-" + ts}.png`,
+      fullPage: true,
+    });
     console.log(`Screenshot taken for ${name} size (${width}x${height})`);
   }
 
